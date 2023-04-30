@@ -5,7 +5,7 @@ pipelineJob('MyParameterizedPipeline') {
         pipeline {
           agent any
           options {
-            stringParam(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment')
+            string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment')
             booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
           }
           stages {
