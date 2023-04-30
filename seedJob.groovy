@@ -4,8 +4,8 @@ pipelineJob('MyParameterizedPipeline') {
       script("""
         properties {
           parameters {
-            stringParam('ENVIRONMENT', 'dev', 'Environment')
-            booleanParam('CLEAN_BUILD', false, 'Perform clean build?')
+            stringParam(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment')
+            booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
           }
         }
         pipeline {
@@ -25,13 +25,12 @@ pipelineJob('MyParameterizedPipeline') {
             }
             stage('Deploy') {
               steps {
-                echo 'Deploying to ${ENVIRONMENT} environment...'
-                // Example deployment steps based on the chosen environment
+                echo "Deploying to \${params.ENVIRONMENT} environment..."
                 sh '''
-                  if [ "${ENVIRONMENT}" == "dev" ]; then
+                  if [ "\${params.ENVIRONMENT}" == "dev" ]; then
                     echo "Deploying to Dev environment..."
                     # Add your deployment commands here for the dev environment
-                  elif [ "${ENVIRONMENT}" == "prod" ]; then
+                  elif [ "\${params.ENVIRONMENT}" == "prod" ]; then
                     echo "Deploying to Prod environment..."
                     # Add your deployment commands here for the prod environment
                   else
