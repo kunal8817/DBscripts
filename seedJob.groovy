@@ -2,14 +2,14 @@ pipelineJob('MyParameterizedPipeline') {
   definition {
     cps {
       script("""
-        properties {
-          parameters {
-            stringParam(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment')
-            booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
-          }
-        }
         pipeline {
           agent any
+          options {
+            parameters {
+              string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment')
+              booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
+            }
+          }
           stages {
             stage('Build') {
               steps {
