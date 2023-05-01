@@ -9,16 +9,16 @@ pipelineJob('MyParameterizedPipeline') {
             booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
           }
           stages {
-            stage('Build') {
+            stage('Listing_version') {
               steps {
-                echo 'Building...'
-                sh 'mvn clean install' // Example build step
+                echo 'Loading...'
+                sh 'terraform --version' // Listing the terraform version
               }
             }
             stage('Test') {
               steps {
                 echo 'Testing...'
-                sh 'mvn test' // Example test step
+                sh 'terraform --version' // Example test step
               }
             }
             stage('Deploy') {
