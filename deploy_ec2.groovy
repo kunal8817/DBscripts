@@ -22,7 +22,7 @@ pipelineJob('Deploy_job') {
             stage('Terraform Plan') {
               steps {
                 dir('Terraform') {
-                  sh 'terraform plan -var environment=$ENVIRONMENT -var gitbranch=$GIT_BRANCH'
+                  sh 'terraform plan -var gitbranch=$GIT_BRANCH'
                 }
               }
             }
@@ -30,7 +30,7 @@ pipelineJob('Deploy_job') {
             stage('Terraform Apply') {
               steps {
                 dir('Terraform') {
-                  sh 'terraform apply -auto-approve -var environment=$ENVIRONMENT -var gitbranch=$GIT_BRANCH'
+                  sh 'terraform apply -auto-approve -var gitbranch=$GIT_BRANCH'
                 }
               }
             }
