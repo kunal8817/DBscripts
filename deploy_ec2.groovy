@@ -5,7 +5,7 @@ pipelineJob('Deploy_job') {
         pipeline {
           agent any
     
-          environment {
+          environmentVariables {
             TF_VAR_environment = $ENVIRONMENT
             TF_VAR_gitbranch = $GIT_BRANCH
     
