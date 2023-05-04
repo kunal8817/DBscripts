@@ -4,15 +4,6 @@ pipelineJob('Deploy_job') {
       script("""
         pipeline {
           agent any
-    
-          environmentVariables {
-            TF_VAR_environment = $ENVIRONMENT
-            TF_VAR_gitbranch = $GIT_BRANCH
-    
-            AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
-            AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-          }
-    
           stages {
             stage('Checkout') {
               steps {
