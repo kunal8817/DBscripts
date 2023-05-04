@@ -6,8 +6,8 @@ pipelineJob('Deploy_job') {
           agent any
     
           environment {
-            TF_VAR_environment = params.environment
-            TF_VAR_gitbranch = params.gitbranch
+            TF_VAR_environment = parameters.environment
+            TF_VAR_gitbranch = parameters.gitbranch
     
             AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
             AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
@@ -16,7 +16,7 @@ pipelineJob('Deploy_job') {
           stages {
             stage('Checkout') {
               steps {
-                git branch: params.gitbranch, url: 'https://github.com/kunal8817/DBscripts.git'
+                git branch: parameters.gitbranch, url: 'https://github.com/kunal8817/DBscripts.git'
               }
             }
     
@@ -31,7 +31,7 @@ pipelineJob('Deploy_job') {
             stage('Terraform Plan') {
               steps {
                 dir('terraform') {
-                  sh 'terraform plan -var environment=${params.environment} -var gitbranch=${params.gitbranch}'
+                  sh 'terraform plan -var environment=${parameters.environment} -var gitbranch=${parameters.gitbranch}'
                 }
               }
             }
@@ -39,7 +39,7 @@ pipelineJob('Deploy_job') {
             stage('Terraform Apply') {
               steps {
                 dir('terraform') {
-                  sh 'terraform apply -auto-approve -var environment=${params.environment} -var gitbranch=${params.gitbranch}'
+                  sh 'terraform apply -auto-approve -var environment=${parameters.environment} -var gitbranch=${parameters.gitbranch}'
                 }
               }
             }
