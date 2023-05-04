@@ -17,7 +17,7 @@ pipeline {
 
     stage('Terraform Init') {
       steps {
-        dir('terraform') {
+        dir('Terraform') {
           sh 'terraform init'
         }
       }
@@ -25,7 +25,7 @@ pipeline {
 
     stage('Terraform Plan') {
       steps {
-        dir('terraform') {
+        dir('Terraform') {
           sh "terraform plan -var environment=${env.ENVIRONMENT} -var gitbranch=${env.GIT_BRANCH}"
         }
       }
