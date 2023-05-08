@@ -1,31 +1,16 @@
-def EnvToDeploy
-import groovy.json.JsonSlurper
-
 pipelineJob('Terraform_Create_Workspace') {
+  description("Deploy Workspace in Terraform")
+  logRotator(-1, 300)
+  parameters {
+    choiceParam('EnvToDeploy', ['dev', 'prod'], 'Create new workspace in Terraform')
+    choiceParam('appBranchType', ['main', 'feature'] 'Select the branch')
+    stringParam('appBranchName', '')
+  }
+
   definition {
     cps {
-      script("""
-        pipeline {
-          agent any
-          parameters {
-            choiceParam('${EnvToDeploy}', ['dev', 'qaat'], 'Environment to deploy')
-          }
-          stages {
-            stage('Listing_version') {
-              steps {
-                echo 'Loading...'
-                sh 'terraform --version' // Listing the terraform version
-              }
-            }
-            stage('Creating Workspace') {
-              steps {
-                echo 'Deploy for ${EnvToDeploy}'
-                sh 'terraform workspace new ${EnvToDeploy}'
-              }
-            }
-          }
-        }
-      """)
+      script(readFileFromWorkspace(Terraform_workspace.groovy))
+      sandbox()
     }
   }
 }
