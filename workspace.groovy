@@ -28,3 +28,4 @@ pipelineJob('Terraform_Create_Workspace') {
       """)
     }
   }
+}
