@@ -1,4 +1,4 @@
-def EnvToDeploy
+def EnvToDeploy = ''
 import groovy.json.JsonSlurper
 
 pipelineJob('Terraform_Create_Workspace') {
@@ -8,7 +8,7 @@ pipelineJob('Terraform_Create_Workspace') {
         pipeline {
           agent any
           parameters {
-            choice(name: 'EnvToDeploy', choices: 'dev', description: 'Environment to deploy')
+            choice(name: '${EnvToDeploy}', choices: 'dev', description: 'Environment to deploy')
           }
           stages {
             stage('Listing_version') {
