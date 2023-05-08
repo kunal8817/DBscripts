@@ -10,7 +10,8 @@ pipelineJob('Terraform_Create_Workspace') {
 
   definition {
     cps {
-      script(readFileFromWorkspace(Terraform_workspace.groovy))
+      def params = [ EnvToDeploy: EnvToDeploy, appBranchType: appBranchType, appBranchName: appBranchName, invokedbyBB: invokedbyBB ]
+      script(readFileFromWorkspace(Terraform_workspace.groovy), params)
       sandbox()
     }
   }

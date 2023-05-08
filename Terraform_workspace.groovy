@@ -1,20 +1,20 @@
-EnvToDeploy = []
+EnvToDeploy = params.EnvToDeploy
 def envDir = "${EnvToDeploy}"
 def appbranch
 import groovy.json.JsonSlurper
 
-if (${params.invokedbyBB}) {
+if (params.invokedbyBB) {
     appbranch = "develop"
     appBranchName = "develop"
 } else {
     switch(EnvToDeploy) {
         case "dev":
-             switch(appBranchType) {
+             switch(params.appBranchType) {
                 case "main":
                      appbranch = "main"
                      break
                 default:
-                    appbranch = "feature/${appBranchName}"
+                    appbranch = "feature/${params.appBranchName}"
                     break
              }
         case "prod":
@@ -23,7 +23,7 @@ if (${params.invokedbyBB}) {
                      appbranch = "main"
                      break
                 default:
-                    appbranch = "feature/${appBranchName}"
+                    appbranch = "feature/${params.appBranchName}"
                     break
              }
     }
@@ -41,9 +41,9 @@ pipeline {
         }
         stage('Create Workspace in the required environment') {
           steps {
-            echo 'Deploy for ${EnvToDeploy}'
-            sh 'mkdir ${envDir}'
-            sh 'terraform workspace new ${EnvToDeploy}'
+            echo "Deploy for ${EnvToDeploy}"
+            sh "mkdir ${envDir}"
+            sh "terraform workspace new ${EnvToDeploy}"
           }
         }
     }
