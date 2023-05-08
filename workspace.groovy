@@ -1,3 +1,4 @@
+def EnvToDeploy
 import groovy.json.JsonSlurper
 
 pipelineJob('Terraform_Create_Workspace') {
