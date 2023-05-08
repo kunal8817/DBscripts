@@ -3,12 +3,12 @@ pipelineJob('Deploy_job') {
       choiceParam('ENVIRONMENT', ['dev', 'prod'], '''Select the Environment.''')
       choiceParam('GIT_BRANCH', ['main', 'feature/terraform'], '''Select the branch''')
   }
-  definition {
-    cps {
-      script("""
-        pipeline {
-          agent any
-          stages {
+    definition {
+      cps {
+        script("""
+          pipeline {
+            agent any
+           stages {
             stage('Checkout') {
               steps {
                 git branch: $GIT_BRANCH, url: 'https://github.com/kunal8817/DBscripts.git'
