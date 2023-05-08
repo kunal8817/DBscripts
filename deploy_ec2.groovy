@@ -1,7 +1,7 @@
 pipelineJob('Deploy_job') {
     parameters {
-      stringParam('ENVIRONMENT', 'Environment (dev, prod)')
-      stringParam('GIT_BRANCH', 'Git branch (main, feature/terraform)')
+      choice(name: 'ENVIRONMENT', choices: ['dev', 'prod'], description: 'Select the Environment.')
+      choice(name: 'GIT_BRANCH', '', choices: ['main', 'feature/terraform'], description: 'Select the branch')
   }
   definition {
     cps {
