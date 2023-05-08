@@ -1,3 +1,6 @@
+def EnvToDeploy = ""
+import groovy.json.JsonSlurper
+
 pipelineJob('Terraform_Create_Workspace') {
   definition {
     cps {
@@ -6,7 +9,6 @@ pipelineJob('Terraform_Create_Workspace') {
           agent any
           parameters {
             choice(name: 'ENVIRONMENT', choices: 'dev', description: 'Environment')
-            booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Perform clean build?')
           }
           stages {
             stage('Listing_version') {
@@ -15,10 +17,10 @@ pipelineJob('Terraform_Create_Workspace') {
                 sh 'terraform --version' // Listing the terraform version
               }
             }
-            stage('Test') {
+            stage('Creating Workspace') {
               steps {
-                echo 'Testing...'
-                sh 'terraform --version' // Example test step
+                echo 'Deploy for ${EnvToDeploy}'
+                sh 'terraform workspace new ${EnvToDeploy}'
               }
             }
           }
