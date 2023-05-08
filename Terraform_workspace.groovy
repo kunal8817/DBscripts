@@ -1,3 +1,4 @@
+EnvToDeploy = []
 def envDir = "${EnvToDeploy}"
 def appbranch
 import groovy.json.JsonSlurper
