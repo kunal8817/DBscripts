@@ -1,4 +1,4 @@
-EnvToDeploy = params.EnvToDeploy
+def EnvToDeploy = params.EnvToDeploy
 def envDir = "${EnvToDeploy}"
 def appbranch
 import groovy.json.JsonSlurper
