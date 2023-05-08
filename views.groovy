@@ -22,7 +22,7 @@ def branchBuildStructure = [
         patternSuffix: ''
     ],
     [
-        name: 'PIPELINE FROM FEATURE'
+        name: 'PIPELINE FROM FEATURE',
         patternSuffix: 'feature-build'
     ]
 ]
