@@ -1,4 +1,4 @@
-def EnvToDeploy = params.EnvToDeploy
+def EnvToDeploy = []
 def envDir = "${EnvToDeploy}"
 def appbranch
 import groovy.json.JsonSlurper
@@ -9,12 +9,12 @@ if (params.invokedbyBB) {
 } else {
     switch(EnvToDeploy) {
         case "dev":
-             switch(params.appBranchType) {
+             switch(appBranchType) {
                 case "main":
                      appbranch = "main"
                      break
                 default:
-                    appbranch = "feature/${params.appBranchName}"
+                    appbranch = "feature/${appBranchName}"
                     break
              }
         case "prod":
@@ -23,7 +23,7 @@ if (params.invokedbyBB) {
                      appbranch = "main"
                      break
                 default:
-                    appbranch = "feature/${params.appBranchName}"
+                    appbranch = "feature/${appBranchName}"
                     break
              }
     }
