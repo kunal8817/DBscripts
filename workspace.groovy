@@ -10,7 +10,7 @@ pipelineJob('Terraform_Create_Workspace') {
 
   definition {
     cps {
-      script(readFileFromWorkspace(Terraform_workspace.groovy))
+      script(readFileFromWorkspace('Terraform_workspace.groovy'))
       sandbox()
       args(params)
     }
