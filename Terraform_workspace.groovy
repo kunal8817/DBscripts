@@ -2,33 +2,6 @@ def EnvToDeploy = []
 def appbranch
 import groovy.json.JsonSlurper
 
-if (params.getOrDefault('invokedbyBB', true)) {
-    appbranch = "develop"
-    appBranchName = "develop"
-} else {
-    switch(EnvToDeploy) {
-        case "dev":
-             switch(appBranchType) {
-                case "main":
-                     appbranch = "main"
-                     break
-                default:
-                    appbranch = "feature/${appBranchName}"
-                    break
-             }
-        case "prod":
-             switch(appBranchType) {
-                case "main":
-                     appbranch = "main"
-                     break
-                default:
-                    appbranch = "feature/${appBranchName}"
-                    break
-             }
-    }
-}
-
-
 pipeline {
     agent any
     stages {
