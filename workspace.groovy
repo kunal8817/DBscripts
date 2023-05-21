@@ -5,7 +5,7 @@ pipelineJob('Terraform_Create_Workspace') {
     choiceParam('EnvToDeploy', ['dev', 'prod'], 'Create new workspace in Terraform')
     choiceParam('appBranchType', ['main', 'feature'], 'Select the branch')
     stringParam('appBranchName', '')
-    booleanParam('invokedbyBB', true, '')
+    booleanParam('invokedbyBB', true, 'uncheck to disable tests')
   }
 
   definition {
