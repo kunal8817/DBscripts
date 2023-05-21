@@ -8,9 +8,3 @@ pipelineJob('Terraform_Create_Workspace') {
     booleanParam('invokedbyBB', true, 'uncheck to disable tests')
   }
 
-  definition {
-    cps {
-      script(readFileFromWorkspace('Terraform_workspace.groovy'))
-    }
-  }
-}
