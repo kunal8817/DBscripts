@@ -3,7 +3,7 @@ pipelineJob('Terraform_Create_Workspace') {
   logRotator(-1, 300)
   parameters {
     choiceParam('EnvToDeploy', ['dev', 'prod'], 'Create new workspace in Terraform')
-    choiceParam('appBranchType', ['main', 'feature'] 'Select the branch')
+    choiceParam('appBranchType', ['main', 'feature'], 'Select the branch')
     stringParam('appBranchName', '')
     booleanParam('invokedbyBB', true, '')
   }
