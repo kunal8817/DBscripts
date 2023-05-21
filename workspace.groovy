@@ -6,4 +6,10 @@ pipelineJob('Terraform_Create_Workspace') {
     stringParam('appBranchName', '')
     booleanParam('invokedbyBB', true, 'uncheck to disable tests')
   }
+  definition {
+    cps {
+      script(readFileFromWorkspace('terraform_create_workspace.groovy'))
+      sandbox()
+    }
+  }
 }
