@@ -6,4 +6,4 @@ pipelineJob('Terraform_Create_Workspace') {
     stringParam('appBranchName', '')
     booleanParam('invokedbyBB', true, 'uncheck to disable tests')
   }
-
+}
