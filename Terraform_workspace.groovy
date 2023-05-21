@@ -1,7 +1,3 @@
-def EnvToDeploy = []
-def appbranch
-import groovy.json.JsonSlurper
-
 pipeline {
     agent any
     stages {
