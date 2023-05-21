@@ -2,7 +2,7 @@ def EnvToDeploy = []
 def appbranch
 import groovy.json.JsonSlurper
 
-if (params.invokedbyBB) {
+if (params.getOrDefault('invokedbyBB', true)) {
     appbranch = "develop"
     appBranchName = "develop"
 } else {
