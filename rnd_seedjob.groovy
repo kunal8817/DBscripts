@@ -6,7 +6,7 @@ pipelineJob('rnd-seedjob-test') {
     parameters{
         choiceParam('gitUrl', [gitUrl], 'Jenkins Git URL')
         choiceParam('gitBranchType', ['feature', 'main'])
-        choiceParam('gitBranchName', '', 'Leave blank for main')
+        choiceParam('gitBranchName', 'Main', 'Branch Name')
     }
 
     definition {
