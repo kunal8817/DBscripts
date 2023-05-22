@@ -12,7 +12,6 @@ pipelineJob('rnd-seedjob-test') {
     definition {
         cps {
             script(readFileFromWorkspace(jobDslScript))
-            sandbox()
         }
     }
 }
